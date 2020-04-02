@@ -10,21 +10,21 @@ public class Finder {
         this.people = people;
     }
 
-    public TwoPeopleBirthdayDifference find(FT ft) {
-        List<TwoPeopleBirthdayDifference> peopleWithBirthDifferences = getPeopleWithBirthDifferencesBetweenThem();
+    public TwoPeopleBirthTimeDifference find(FT ft) {
+        List<TwoPeopleBirthTimeDifference> peopleWithBirthDifferences = getPeopleWithBirthDifferencesBetweenThem();
 
         if (peopleWithBirthDifferences.isEmpty()) {
-            return new TwoPeopleBirthdayDifference();
+            return new TwoPeopleBirthTimeDifference();
         }
 
-        TwoPeopleBirthdayDifference answer = peopleWithBirthDifferences.get(0);
-        for (TwoPeopleBirthdayDifference result : peopleWithBirthDifferences) {
+        TwoPeopleBirthTimeDifference answer = peopleWithBirthDifferences.get(0);
+        for (TwoPeopleBirthTimeDifference result : peopleWithBirthDifferences) {
             if (ft == FT.CLOSEST) {
-                if (result.difference < answer.difference) {
+                if (result.birthTimeDifference < answer.birthTimeDifference) {
                     answer = result;
                 }
             } else if (ft == FT.FURTHEST) {
-                if (result.difference > answer.difference) {
+                if (result.birthTimeDifference > answer.birthTimeDifference) {
                     answer = result;
                 }
             }
@@ -33,14 +33,14 @@ public class Finder {
         return answer;
     }
 
-    private List<TwoPeopleBirthdayDifference> getPeopleWithBirthDifferencesBetweenThem() {
-        List<TwoPeopleBirthdayDifference> peopleWithBirthDifferences = new ArrayList<>();
+    private List<TwoPeopleBirthTimeDifference> getPeopleWithBirthDifferencesBetweenThem() {
+        List<TwoPeopleBirthTimeDifference> peopleWithBirthDifferences = new ArrayList<>();
 
         for (int i = 0; i < people.size() - 1; i++) {
             for (int j = i + 1; j < people.size(); j++) {
                 final Person currentPerson = people.get(i);
                 final Person otherPerson = people.get(j);
-                peopleWithBirthDifferences.add(TwoPeopleBirthdayDifference.build(currentPerson, otherPerson));
+                peopleWithBirthDifferences.add(TwoPeopleBirthTimeDifference.build(currentPerson, otherPerson));
             }
         }
         return peopleWithBirthDifferences;

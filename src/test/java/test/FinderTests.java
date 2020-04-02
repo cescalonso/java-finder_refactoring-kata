@@ -1,6 +1,6 @@
 package test;
 
-import algorithm.TwoPeopleBirthdayDifference;
+import algorithm.TwoPeopleBirthTimeDifference;
 import algorithm.FT;
 import algorithm.Finder;
 import algorithm.Person;
@@ -32,7 +32,7 @@ public class FinderTests {
         List<Person> list = new ArrayList<>();
         Finder finder = new Finder(list);
 
-        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
+        TwoPeopleBirthTimeDifference result = finder.find(FT.CLOSEST);
 		assertNull(result.younger);
 		assertNull(result.older);
     }
@@ -43,7 +43,7 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
+        TwoPeopleBirthTimeDifference result = finder.find(FT.CLOSEST);
 
         assertNull(result.younger);
         assertNull(result.older);
@@ -55,7 +55,7 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
+        TwoPeopleBirthTimeDifference result = finder.find(FT.CLOSEST);
 
         assertEquals(sue, result.younger);
         assertEquals(greg, result.older);
@@ -67,7 +67,7 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        TwoPeopleBirthdayDifference result = finder.find(FT.FURTHEST);
+        TwoPeopleBirthTimeDifference result = finder.find(FT.FURTHEST);
 
         assertEquals(greg, result.younger);
         assertEquals(mike, result.older);
@@ -79,7 +79,7 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        TwoPeopleBirthdayDifference result = finder.find(FT.FURTHEST);
+        TwoPeopleBirthTimeDifference result = finder.find(FT.FURTHEST);
 
         assertEquals(sue, result.younger);
         assertEquals(sarah, result.older);
@@ -95,7 +95,7 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
+        TwoPeopleBirthTimeDifference result = finder.find(FT.CLOSEST);
 
         assertEquals(sue, result.younger);
         assertEquals(greg, result.older);
