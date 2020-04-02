@@ -1,6 +1,6 @@
 package test;
 
-import algorithm.F;
+import algorithm.TwoPeopleBirthdayDifference;
 import algorithm.FT;
 import algorithm.Finder;
 import algorithm.Person;
@@ -32,9 +32,9 @@ public class FinderTests {
         List<Person> list = new ArrayList<>();
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.CLOSEST);
-		assertNull(result.person1);
-		assertNull(result.person2);
+        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
+		assertNull(result.younger);
+		assertNull(result.older);
     }
 
     @Test
@@ -43,10 +43,10 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.CLOSEST);
+        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
 
-        assertNull(result.person1);
-        assertNull(result.person2);
+        assertNull(result.younger);
+        assertNull(result.older);
     }
 
     @Test
@@ -55,10 +55,10 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.CLOSEST);
+        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
 
-        assertEquals(sue, result.person1);
-        assertEquals(greg, result.person2);
+        assertEquals(sue, result.younger);
+        assertEquals(greg, result.older);
     }
 
     @Test
@@ -67,25 +67,22 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.FURTHEST);
+        TwoPeopleBirthdayDifference result = finder.find(FT.FURTHEST);
 
-        assertEquals(greg, result.person1);
-        assertEquals(mike, result.person2);
+        assertEquals(greg, result.younger);
+        assertEquals(mike, result.older);
     }
 
     @Test
-    public void Returns_Furthest_Two_For_Four_People() {
-        List<Person> list = new ArrayList<Person>();
-        list.add(sue);
-        list.add(sarah);
-        list.add(mike);
-        list.add(greg);
+    public void returns_furthest_two_for_four_people() {
+        List<Person> list = Arrays.asList(sue, sarah, mike, greg);
+
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.FURTHEST);
+        TwoPeopleBirthdayDifference result = finder.find(FT.FURTHEST);
 
-        assertEquals(sue, result.person1);
-        assertEquals(sarah, result.person2);
+        assertEquals(sue, result.younger);
+        assertEquals(sarah, result.older);
     }
 
     @Test
@@ -98,10 +95,10 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.CLOSEST);
+        TwoPeopleBirthdayDifference result = finder.find(FT.CLOSEST);
 
-        assertEquals(sue, result.person1);
-        assertEquals(greg, result.person2);
+        assertEquals(sue, result.younger);
+        assertEquals(greg, result.older);
     }
 
 }
