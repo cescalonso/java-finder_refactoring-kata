@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class Person {
     private String name;
-    private Date birthDate;
+    private long birthTime;
 
-    public Person(String name, Date birthDate) {
+    public Person(String name, Date birthTime) {
         this.name = name;
-        this.birthDate = birthDate;
+        this.birthTime = birthTime.getTime();
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public long getBirthTime() {
+        return birthTime;
     }
 }
 

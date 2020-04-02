@@ -32,7 +32,7 @@ public class FinderTests {
         List<Person> list = new ArrayList<>();
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.One);
+        F result = finder.find(FT.CLOSEST);
 		assertNull(result.person1);
 		assertNull(result.person2);
     }
@@ -43,34 +43,31 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.One);
+        F result = finder.find(FT.CLOSEST);
 
         assertNull(result.person1);
         assertNull(result.person2);
     }
 
     @Test
-    public void Returns_Closest_Two_For_Two_People() {
-        List<Person> list = new ArrayList<>();
-        list.add(sue);
-        list.add(greg);
+    public void returns_closest_two_for_two_people() {
+        List<Person> list = Arrays.asList(sue, greg);
+
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.One);
+        F result = finder.find(FT.CLOSEST);
 
         assertEquals(sue, result.person1);
         assertEquals(greg, result.person2);
     }
 
     @Test
-    public void Returns_Furthest_Two_For_Two_People() {
-        List<Person> list = new ArrayList<Person>();
-        list.add(mike);
-        list.add(greg);
+    public void returns_furthest_two_for_two_people() {
+        List<Person> list = Arrays.asList(mike, greg);
 
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.Two);
+        F result = finder.find(FT.FURTHEST);
 
         assertEquals(greg, result.person1);
         assertEquals(mike, result.person2);
@@ -85,7 +82,7 @@ public class FinderTests {
         list.add(greg);
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.Two);
+        F result = finder.find(FT.FURTHEST);
 
         assertEquals(sue, result.person1);
         assertEquals(sarah, result.person2);
@@ -101,7 +98,7 @@ public class FinderTests {
 
         Finder finder = new Finder(list);
 
-        F result = finder.find(FT.One);
+        F result = finder.find(FT.CLOSEST);
 
         assertEquals(sue, result.person1);
         assertEquals(greg, result.person2);
