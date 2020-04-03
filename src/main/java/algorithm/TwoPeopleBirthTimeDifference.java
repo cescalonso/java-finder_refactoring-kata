@@ -10,6 +10,10 @@ public class TwoPeopleBirthTimeDifference {
 		this.birthTimeDifference = older.getBirthTime() - younger.getBirthTime();
 	}
 
+	public long getBirthTimeDifference() {
+		return birthTimeDifference;
+	}
+
 	public TwoPeopleBirthTimeDifference() {
 	}
 
@@ -19,4 +23,5 @@ public class TwoPeopleBirthTimeDifference {
 		}
 		return new TwoPeopleBirthTimeDifference(person2, person1);
 	}
+
 }

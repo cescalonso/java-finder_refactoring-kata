@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Finder {
     private final List<Person> people;
@@ -10,27 +11,13 @@ public class Finder {
         this.people = people;
     }
 
-    public TwoPeopleBirthTimeDifference find(FT ft) {
+    public TwoPeopleBirthTimeDifference find(BirthDifferenceType birthDifferenceType) {
         List<TwoPeopleBirthTimeDifference> peopleWithBirthDifferences = getPeopleWithBirthDifferencesBetweenThem();
 
-        if (peopleWithBirthDifferences.isEmpty()) {
-            return new TwoPeopleBirthTimeDifference();
-        }
+        final Optional<TwoPeopleBirthTimeDifference> twoPeopleBirthTimeDifference =
+                peopleWithBirthDifferences.stream().reduce(birthDifferenceType.get());
 
-        TwoPeopleBirthTimeDifference answer = peopleWithBirthDifferences.get(0);
-        for (TwoPeopleBirthTimeDifference result : peopleWithBirthDifferences) {
-            if (ft == FT.CLOSEST) {
-                if (result.birthTimeDifference < answer.birthTimeDifference) {
-                    answer = result;
-                }
-            } else if (ft == FT.FURTHEST) {
-                if (result.birthTimeDifference > answer.birthTimeDifference) {
-                    answer = result;
-                }
-            }
-        }
-
-        return answer;
+        return twoPeopleBirthTimeDifference.orElseGet(TwoPeopleBirthTimeDifference::new);
     }
 
     private List<TwoPeopleBirthTimeDifference> getPeopleWithBirthDifferencesBetweenThem() {
