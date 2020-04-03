@@ -6,16 +6,16 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public enum BirthDifferenceCriterion {
-    CLOSEST(people -> new TwoPeopleBirthTimeDifference(people.get(0), people.get(1))),
-    FURTHEST(people -> new TwoPeopleBirthTimeDifference(people.get(0), people.get(people.size() - 1)));
+    CLOSEST(people -> new TwoPeople(people.get(0), people.get(1))),
+    FURTHEST(people -> new TwoPeople(people.get(0), people.get(people.size() - 1)));
 
-    private Function<List<Person>, TwoPeopleBirthTimeDifference> twoPeopleBirthTimeDifferenceFunction;
+    private Function<List<Person>, TwoPeople> twoPeopleBirthTimeDifferenceFunction;
 
-    BirthDifferenceCriterion(Function<List<Person>, TwoPeopleBirthTimeDifference> twoPeopleBirthTimeDifferenceFunction) {
+    BirthDifferenceCriterion(Function<List<Person>, TwoPeople> twoPeopleBirthTimeDifferenceFunction) {
         this.twoPeopleBirthTimeDifferenceFunction = twoPeopleBirthTimeDifferenceFunction;
     }
 
-    public Optional<TwoPeopleBirthTimeDifference> apply(List<Person> people) {
+    public Optional<TwoPeople> apply(List<Person> people) {
         if (people.size() < 2) {
             return Optional.empty();
         }

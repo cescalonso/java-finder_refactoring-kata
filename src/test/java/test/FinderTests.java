@@ -3,7 +3,7 @@ package test;
 import algorithm.BirthDifferenceCriterion;
 import algorithm.Finder;
 import algorithm.Person;
-import algorithm.TwoPeopleBirthTimeDifference;
+import algorithm.TwoPeople;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,9 +32,9 @@ public class FinderTests {
         List<Person> list = new ArrayList<>();
         Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
-        assertNull(result.younger);
-        assertNull(result.older);
+        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        assertNull(result.getYounger());
+        assertNull(result.getOlder());
     }
 
     @Test
@@ -43,10 +43,10 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
 
-        assertNull(result.younger);
-        assertNull(result.older);
+        assertNull(result.getYounger());
+        assertNull(result.getOlder());
     }
 
     @Test
@@ -55,10 +55,10 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
 
-        assertEquals(sue, result.younger);
-        assertEquals(greg, result.older);
+        assertEquals(sue, result.getYounger());
+        assertEquals(greg, result.getOlder());
     }
 
     @Test
@@ -67,10 +67,10 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
+        TwoPeople result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
 
-        assertEquals(greg, result.younger);
-        assertEquals(mike, result.older);
+        assertEquals(greg, result.getYounger());
+        assertEquals(mike, result.getOlder());
     }
 
     @Test
@@ -79,10 +79,10 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
+        TwoPeople result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
 
-        assertEquals(sue, result.younger);
-        assertEquals(sarah, result.older);
+        assertEquals(sue, result.getYounger());
+        assertEquals(sarah, result.getOlder());
     }
 
     @Test
@@ -95,10 +95,10 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
 
-        assertEquals(sue, result.younger);
-        assertEquals(greg, result.older);
+        assertEquals(sue, result.getYounger());
+        assertEquals(greg, result.getOlder());
     }
 
 }
