@@ -1,22 +1,22 @@
 package algorithm;
 
-import java.util.Comparator;
-import java.util.function.BinaryOperator;
-import java.util.function.Supplier;
+import java.util.List;
+import java.util.function.Function;
 
-public enum BirthDifferenceType implements Supplier<BinaryOperator<TwoPeopleBirthTimeDifference>> {
-    CLOSEST(BinaryOperator.minBy(Comparator.comparing(TwoPeopleBirthTimeDifference::getBirthTimeDifference))),
-    FURTHEST(BinaryOperator.maxBy(Comparator.comparing(TwoPeopleBirthTimeDifference::getBirthTimeDifference)));
+public enum BirthDifferenceType {
+    CLOSEST(people -> new TwoPeopleBirthTimeDifference(people.get(0), people.get(1))),
+    FURTHEST(people -> new TwoPeopleBirthTimeDifference(people.get(0), people.get(people.size() - 1)));
+    
+    private Function<List<Person>, TwoPeopleBirthTimeDifference> twoPeopleBirthTimeDifferenceFunction;
 
-    private final BinaryOperator<TwoPeopleBirthTimeDifference> birthTimeDifferenceBinaryOperator;
-
-    BirthDifferenceType(BinaryOperator<TwoPeopleBirthTimeDifference> birthTimeDifferenceBinaryOperator) {
-
-        this.birthTimeDifferenceBinaryOperator = birthTimeDifferenceBinaryOperator;
+    BirthDifferenceType(Function<List<Person>, TwoPeopleBirthTimeDifference> twoPeopleBirthTimeDifferenceFunction) {
+        this.twoPeopleBirthTimeDifferenceFunction = twoPeopleBirthTimeDifferenceFunction;
     }
 
-    @Override
-    public BinaryOperator<TwoPeopleBirthTimeDifference> get() {
-        return birthTimeDifferenceBinaryOperator;
+    public TwoPeopleBirthTimeDifference apply(List<Person> people) {
+        if (people.size() < 2) {
+            throw new RuntimeException("It should be at least two people");
+        }
+        return twoPeopleBirthTimeDifferenceFunction.apply(people);
     }
 }

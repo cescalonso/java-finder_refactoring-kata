@@ -1,9 +1,9 @@
 package test;
 
-import algorithm.TwoPeopleBirthTimeDifference;
 import algorithm.BirthDifferenceType;
 import algorithm.Finder;
 import algorithm.Person;
+import algorithm.TwoPeopleBirthTimeDifference;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,20 +30,20 @@ public class FinderTests {
     @Test
     public void returns_empty_results_when_given_empty_list() {
         List<Person> list = new ArrayList<>();
-        Finder finder = new Finder(list);
+        Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(BirthDifferenceType.CLOSEST);
-		assertNull(result.younger);
-		assertNull(result.older);
+        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceType.CLOSEST);
+        assertNull(result.younger);
+        assertNull(result.older);
     }
 
     @Test
     public void returns_empty_results_when_given_one_person() {
         List<Person> list = Collections.singletonList(sue);
 
-        Finder finder = new Finder(list);
+        Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(BirthDifferenceType.CLOSEST);
+        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceType.CLOSEST);
 
         assertNull(result.younger);
         assertNull(result.older);
@@ -53,9 +53,9 @@ public class FinderTests {
     public void returns_closest_two_for_two_people() {
         List<Person> list = Arrays.asList(sue, greg);
 
-        Finder finder = new Finder(list);
+        Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(BirthDifferenceType.CLOSEST);
+        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceType.CLOSEST);
 
         assertEquals(sue, result.younger);
         assertEquals(greg, result.older);
@@ -65,9 +65,9 @@ public class FinderTests {
     public void returns_furthest_two_for_two_people() {
         List<Person> list = Arrays.asList(mike, greg);
 
-        Finder finder = new Finder(list);
+        Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(BirthDifferenceType.FURTHEST);
+        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceType.FURTHEST);
 
         assertEquals(greg, result.younger);
         assertEquals(mike, result.older);
@@ -77,9 +77,9 @@ public class FinderTests {
     public void returns_furthest_two_for_four_people() {
         List<Person> list = Arrays.asList(sue, sarah, mike, greg);
 
-        Finder finder = new Finder(list);
+        Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(BirthDifferenceType.FURTHEST);
+        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceType.FURTHEST);
 
         assertEquals(sue, result.younger);
         assertEquals(sarah, result.older);
@@ -93,9 +93,9 @@ public class FinderTests {
         list.add(mike);
         list.add(greg);
 
-        Finder finder = new Finder(list);
+        Finder finder = new Finder();
 
-        TwoPeopleBirthTimeDifference result = finder.find(BirthDifferenceType.CLOSEST);
+        TwoPeopleBirthTimeDifference result = finder.find(list, BirthDifferenceType.CLOSEST);
 
         assertEquals(sue, result.younger);
         assertEquals(greg, result.older);
