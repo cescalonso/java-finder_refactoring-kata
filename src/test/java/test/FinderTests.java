@@ -21,10 +21,10 @@ public class FinderTests {
 
     @Before
     public void setup() {
-        sue = new Person("Sue", new Date(50, 0, 1));
-        greg = new Person("Greg", new Date(52, 5, 1));
-        sarah = new Person("Sarah", new Date(82, 0, 1));
-        mike = new Person("Mike", new Date(79, 0, 1));
+        sue = new Person("Sue", new GregorianCalendar(50 + 1900, 0, 1));
+        greg = new Person("Greg", new GregorianCalendar(52 + 1900, 5, 1));
+        sarah = new Person("Sarah", new GregorianCalendar(82 + 1900, 0, 1));
+        mike = new Person("Mike", new GregorianCalendar(79 + 1900, 0, 1));
     }
 
     @Test

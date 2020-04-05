@@ -1,19 +1,18 @@
 package algorithm;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Person {
-    private String name;
+    private final String name;
     private long birthTime;
 
-    public Person(String name, Date birthTime) {
+    public Person(String name, GregorianCalendar birthTime) {
         this.name = name;
-        this.birthTime = birthTime.getTime();
+        this.birthTime = birthTime.getTime().getTime();
     }
 
     public long getBirthTime() {
         return birthTime;
     }
-
 }
 
