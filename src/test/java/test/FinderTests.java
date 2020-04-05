@@ -9,8 +9,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class FinderTests {
 
@@ -32,9 +31,8 @@ public class FinderTests {
         List<Person> list = new ArrayList<>();
         Finder finder = new Finder();
 
-        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
-        assertNull(result.getYounger());
-        assertNull(result.getOlder());
+        Optional<TwoPeople> result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        assertFalse(result.isPresent());
     }
 
     @Test
@@ -43,10 +41,9 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        Optional<TwoPeople> result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
 
-        assertNull(result.getYounger());
-        assertNull(result.getOlder());
+        assertFalse(result.isPresent());
     }
 
     @Test
@@ -55,10 +52,14 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        Optional<TwoPeople> result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
 
-        assertEquals(sue, result.getYounger());
-        assertEquals(greg, result.getOlder());
+        assertTrue(result.isPresent());
+        result.ifPresent(twoPeople -> {
+            assertEquals(sue, twoPeople.getYounger());
+            assertEquals(greg, twoPeople.getOlder());
+        });
+
     }
 
     @Test
@@ -67,10 +68,13 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeople result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
+        Optional<TwoPeople> result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
 
-        assertEquals(greg, result.getYounger());
-        assertEquals(mike, result.getOlder());
+        assertTrue(result.isPresent());
+        result.ifPresent(twoPeople -> {
+            assertEquals(greg, twoPeople.getYounger());
+            assertEquals(mike, twoPeople.getOlder());
+        });
     }
 
     @Test
@@ -79,10 +83,13 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeople result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
+        Optional<TwoPeople> result = finder.find(list, BirthDifferenceCriterion.FURTHEST);
 
-        assertEquals(sue, result.getYounger());
-        assertEquals(sarah, result.getOlder());
+        assertTrue(result.isPresent());
+        result.ifPresent(twoPeople -> {
+            assertEquals(sue, twoPeople.getYounger());
+            assertEquals(sarah, twoPeople.getOlder());
+        });
     }
 
     @Test
@@ -95,10 +102,14 @@ public class FinderTests {
 
         Finder finder = new Finder();
 
-        TwoPeople result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
+        Optional<TwoPeople> result = finder.find(list, BirthDifferenceCriterion.CLOSEST);
 
-        assertEquals(sue, result.getYounger());
-        assertEquals(greg, result.getOlder());
+        assertTrue(result.isPresent());
+        result.ifPresent(twoPeople -> {
+            assertEquals(sue, twoPeople.getYounger());
+            assertEquals(greg, twoPeople.getOlder());
+        });
+
     }
 
 }
